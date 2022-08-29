@@ -14,6 +14,7 @@ class UserController extends Controller
         $this->middleware('can:admin.users.index')->only('index');
         $this->middleware('can:admin.users.edit')->only('edit', 'update');
     }
+
     public function index()
     {
         return view('admin.users.index');
@@ -30,6 +31,7 @@ class UserController extends Controller
     {
         $user->roles()->sync($request->roles);
 
-        return redirect()->route('admin.users.index', $user)->with('info', 'Rol asignado correctamente !!! ');
+        return redirect()->route('admin.users.index', $user)
+            ->with('info', 'Rol asignado correctamente !!! ');
     }
 }
